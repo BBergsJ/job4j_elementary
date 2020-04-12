@@ -20,4 +20,12 @@ public class ConverterTest {
         int out = Converter.rubleToDollar(in);
         Assert.assertEquals(expected, out);
     }
+
+    @Test
+    public void whenConvert0RblThen0Euro() {
+        int in = 0;
+        int expected = 0;
+        int out = Converter.rubleToEuro(in);
+        Assert.assertEquals(expected, out);
+    }
 }
