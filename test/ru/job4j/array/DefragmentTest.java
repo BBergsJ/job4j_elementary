@@ -45,4 +45,12 @@ public class DefragmentTest {
         String[] expected = {"I", "wanna", "be", "compressed", null, null, null};
         assertThat(compressed, is(expected));
     }
+
+    @Test
+    public void notAllAtFirstNullLast() {
+        String[] input = {null, "null", "null", "I", "wanna", "be", "compressed"};
+        String[] compressed = Defragment.compress(input);
+        String[] expected = {"null", "null", "I", "wanna", "be", "compressed", null};
+        assertThat(compressed, is(expected));
+    }
 }

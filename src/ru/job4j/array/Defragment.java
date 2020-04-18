@@ -8,11 +8,10 @@ public class Defragment {
                 // переместить первую не null ячейку
                 // Здесь нужен цикл while
                 while (array[point] == null && point < array.length - 1) {
-                    String temp = array[point];
-                    array[point] = array[point + 1];
-                    array[point + 1] = temp;
                     point++;
                 }
+                array[index] = array[point];
+                array[point] = null;
             }
             System.out.print(array[index] + " ");
         }
@@ -20,7 +19,7 @@ public class Defragment {
     }
 
     public static void main(String[] args) {
-        String[] input = {"I", null, "wanna", null, "be", null, "compressed"};
+        String[] input = {"index", null, "wanna", null, "be", null, "compressed"};
         String[] compressed = compress(input);
         System.out.println();
         for (int index = 0; index < compressed.length; index++) {
