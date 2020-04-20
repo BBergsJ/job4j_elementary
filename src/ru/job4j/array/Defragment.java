@@ -8,10 +8,13 @@ public class Defragment {
                 // переместить первую не null ячейку
                 // Здесь нужен цикл while
                 while (array[point] == null && point < array.length - 1) {
+                    if (array[point + 1] != null) {
+                        array[index] = array[point + 1];
+                        array[point + 1] = null;
+                        break;
+                    }
                     point++;
                 }
-                array[index] = array[point];
-                array[point] = null;
             }
             System.out.print(array[index] + " ");
         }
