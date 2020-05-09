@@ -11,20 +11,11 @@ public class Matches {
         while (matches > 0) {
             System.out.println(String.format("%s, заберите от 1 до 3 спичек: ", turnOne ? "Игрок 1" : "Игрок 2"));
             int i = Integer.valueOf(scanner.nextLine());
-            if (turnOne) {
-                turnOne = false;
-            } else {
-                turnOne = true;
-            }
+            turnOne = !turnOne;
             matches -= i;
             System.out.println("Осталось " + matches + " спичек.");
         }
-        System.out.println("Спички кончились.");
-        if (turnOne) {
-            System.out.println("Победил Игрок 1!" + System.lineSeparator() + "Конец игры.");
-        } else {
-            System.out.println("Победил Игрок 2!" + System.lineSeparator() + "Конец игры.");
-        }
-
+        System.out.println(String.format("Спички кончились. Победил %s!"
+                + System.lineSeparator() + "Конец игры.", turnOne ? "Игрок 1" : "Игрок 2"));
     }
 }
