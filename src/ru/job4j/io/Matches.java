@@ -9,17 +9,14 @@ public class Matches {
         boolean turnOne = true;
         System.out.println("Игра \"Спички\"");
         while (matches > 0) {
+            System.out.println(String.format("%s, заберите от 1 до 3 спичек: ", turnOne ? "Игрок 1" : "Игрок 2"));
+            int i = Integer.valueOf(scanner.nextLine());
             if (turnOne) {
-                System.out.println("Игрок 1, заберите от 1 до 3 спичек: ");
-                int playerOne = Integer.valueOf(scanner.nextLine());
-                matches -= playerOne;
                 turnOne = false;
             } else {
-                System.out.println("Игрок 2, заберите от 1 до 3 спичек: ");
-                int playerTwo = Integer.valueOf(scanner.nextLine());
-                matches -= playerTwo;
                 turnOne = true;
             }
+            matches -= i;
             System.out.println("Осталось " + matches + " спичек.");
         }
         System.out.println("Спички кончились.");
