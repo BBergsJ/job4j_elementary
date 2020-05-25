@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 public class FactTest {
 
     @Test(expected = IllegalArgumentException.class)
-    public void calc() {
+    public void whenMinusThanError() {
         Fact.calc(-1);
     }
 }
