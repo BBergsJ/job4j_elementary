@@ -7,7 +7,7 @@ public class FindEl {
         int rsl = -1;
         // for-each
         for (int i = 0; i < value.length; i++) {
-            if (value[i] == key) {
+            if (value[i].equals(key)) {
                 return i;
             }
         }
