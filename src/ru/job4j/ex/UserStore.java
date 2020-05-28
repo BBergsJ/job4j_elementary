@@ -18,8 +18,10 @@ public class UserStore {
     }
 
     public static boolean validate(User user) throws UserInvalidException {
-        if (!user.isValid() || user.getUsername().length() < 3) {
-            throw new UserInvalidException("Not valid or less than 3.");
+        if (!user.isValid()) {
+            throw new UserInvalidException("Not valid!");
+        } else if (user.getUsername().length() < 3) {
+            throw new UserInvalidException("Less than 3!");
         }
         return true;
     }
