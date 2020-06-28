@@ -3,10 +3,7 @@ package ru.job4j.collection;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.lessThan;
@@ -39,35 +36,31 @@ public class JobTest {
     public void whenCompatorByNameInc() {
         List<Job> jobs = Arrays.asList(
                 new Job("Fix bug", 1),
-                new Job("Fix bug", 4),
-                new Job("Fix bug", 2),
                 new Job("X task", 0)
         );
         List<Job> sorted = Arrays.asList(
                 new Job("Fix bug", 1),
-                new Job("Fix bug", 4),
-                new Job("Fix bug", 2),
                 new Job("X task", 0)
         );
         Collections.sort(jobs, new JobIncByName());
-        assertThat(jobs, is(sorted));
+
+        Iterator<Job> it = jobs.iterator();
+
+        assertThat(it.next(), is(new Job("Fix bug", 1)));
+        assertThat(it.next(), is(new Job("X task", 0)));
     }
 
     @Test
     public void whenCompatorByPriorityInc() {
         List<Job> jobs = Arrays.asList(
                 new Job("Fix bug", 1),
-                new Job("Fix bug", 4),
-                new Job("Fix bug", 2),
                 new Job("X task", 0)
         );
-        List<Job> sorted = Arrays.asList(
-                new Job("X task", 0),
-                new Job("Fix bug", 1),
-                new Job("Fix bug", 2),
-                new Job("Fix bug", 4)
-        );
+
         Collections.sort(jobs, new JobIncByPriority());
-        assertThat(jobs, is(sorted));
+
+        Iterator<Job> it = jobs.iterator();
+        assertThat(it.next(), is(new Job("X task", 0)));
+        assertThat(it.next(), is(new Job("Fix bug", 1)));
     }
 }
