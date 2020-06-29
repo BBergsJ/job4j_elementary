@@ -14,22 +14,56 @@ import static org.junit.Assert.*;
 public class JobTest {
     @Test
     public void whenCompatorByNameAndProrityDesc() {
-        Comparator<Job> cmpNamePriority = new JobDescByName().thenComparing(new JobDescByPriority());
-        int rsl = cmpNamePriority.compare(
-                new Job("Impl task", 0),
+        List<Job> jobs = Arrays.asList(
+                new Job("X task", 0),
                 new Job("Fix bug", 1)
         );
-        assertThat(rsl, lessThan(0));
+        Comparator<Job> cmpNamePriority = new JobDescByName().thenComparing(new JobDescByPriority());
+        Collections.sort(jobs, cmpNamePriority);
+
+        List<Job> expected = Arrays.asList(
+                new Job("X task", 0),
+                new Job("Fix bug", 1)
+        );
+        Collections.sort(expected, new JobDescByName());
+
+        assertThat(jobs, is(expected));
     }
 
     @Test
     public void whenCompatorByNameAndProrityInc() {
-        Comparator<Job> cmpNamePriority = new JobIncByName().thenComparing(new JobIncByPriority());
-        int rsl = cmpNamePriority.compare(
-                new Job("Impl task", 0),
+        List<Job> jobs = Arrays.asList(
+                new Job("X task", 0),
                 new Job("Fix bug", 1)
         );
-        assertThat(rsl, greaterThan(0));
+        Comparator<Job> cmpNamePriority = new JobIncByName().thenComparing(new JobIncByPriority());
+        Collections.sort(jobs, cmpNamePriority);
+
+        List<Job> expected = Arrays.asList(
+                new Job("X task", 0),
+                new Job("Fix bug", 1)
+        );
+        Collections.sort(expected, new JobIncByName());
+
+        assertThat(jobs, is(expected));
+    }
+
+    @Test
+    public void whenCompatorByPriorityAndNameInc() {
+        List<Job> jobs = Arrays.asList(
+                new Job("X task", 0),
+                new Job("Fix bug", 1)
+        );
+        Comparator<Job> cmpNamePriority = new JobIncByPriority().thenComparing(new JobIncByName());
+        Collections.sort(jobs, cmpNamePriority);
+
+        List<Job> expected = Arrays.asList(
+                new Job("X task", 0),
+                new Job("Fix bug", 1)
+        );
+        Collections.sort(expected, new JobIncByPriority());
+
+        assertThat(jobs, is(expected));
     }
 
     @Test
