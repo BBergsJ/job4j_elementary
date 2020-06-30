@@ -12,6 +12,17 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
 public class JobTest {
+
+    @Test
+    public void whenSameNameThenSecondComp() {
+        Comparator<Job> cmpNamePriority = new JobIncByName().thenComparing(new JobIncByPriority());
+        int rsl = cmpNamePriority.compare(
+                new Job("Fix bug", 3),
+                new Job("Fix bug", 0)
+        );
+        assertThat(rsl, greaterThan(0));
+    }
+
     @Test
     public void whenCompatorByNameAndProrityDesc() {
         List<Job> jobs = Arrays.asList(
