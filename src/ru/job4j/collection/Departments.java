@@ -1,8 +1,6 @@
 package ru.job4j.collection;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 public class Departments {
     public static List<String> fillGaps(List<String> deps) {
@@ -11,17 +9,19 @@ public class Departments {
             String start = "";
             for (String el : value.split("/")) {
                 tmp.add(start + el);
-                start = el + "/";
-//                tmp.add(start + "/" + el);
-//                start = el;
+                start = start + el + "/";
             }
         }
-        return new ArrayList<>(tmp);
+        List<String> sortedTmp = new ArrayList<>(tmp);
+        sortAsc(sortedTmp);
+        return sortedTmp;
     }
 
     public static void sortAsc(List<String> orgs) {
+        Collections.sort(orgs, Comparator.naturalOrder());
     }
 
     public static void sortDesc(List<String> orgs) {
+        Collections.sort(orgs, new DepDescComp());
     }
 }
