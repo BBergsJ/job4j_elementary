@@ -12,9 +12,8 @@ public class Departments {
                 start = start + el + "/";
             }
         }
-        List<String> sortedTmp = new ArrayList<>(tmp);
-        sortAsc(sortedTmp);
-        return sortedTmp;
+        List<String> filledTmp = new ArrayList<>(tmp);
+        return filledTmp;
     }
 
     public static void sortAsc(List<String> orgs) {
