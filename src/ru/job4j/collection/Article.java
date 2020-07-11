@@ -8,7 +8,7 @@ public class Article {
         HashSet<String> lineSet = new HashSet<>();
         boolean result = true;
 
-        for (String s : origin.split(" |,|!|\\.")) {
+        for (String s : origin.split(" |,|!|\\.|;|:")) {
             originSet.add(s);
         }
         for (String s : line.split(" |,|!|\\.|;|:")) {
