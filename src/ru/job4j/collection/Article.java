@@ -1,19 +1,13 @@
 package ru.job4j.collection;
 
+import java.util.Arrays;
 import java.util.HashSet;
 
 public class Article {
     public static boolean generateBy(String origin, String line) {
-        HashSet<String> originSet = new HashSet<>();
-        HashSet<String> lineSet = new HashSet<>();
+        HashSet<String> originSet = new HashSet<>(Arrays.asList(origin.split("[ ,!.;:]")));
+        HashSet<String> lineSet = new HashSet<>(Arrays.asList(line.split("[ ,!.;:]")));
         boolean result = true;
-
-        for (String s : origin.split(" |,|!|\\.|;|:")) {
-            originSet.add(s);
-        }
-        for (String s : line.split(" |,|!|\\.|;|:")) {
-            lineSet.add(s);
-        }
 
         for (String s : lineSet) {
             if (!originSet.contains(s)) {
