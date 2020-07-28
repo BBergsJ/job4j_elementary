@@ -26,4 +26,22 @@ public class ProfilesTest {
 
         assertThat(test, is(expected));
     }
+
+    @Test
+    public void whenSameAddress() {
+        List<Profile> profileList = List.of(new Profile(new Address("A", "A", 1, 1))
+                ,new Profile(new Address("B", "B", 2, 2))
+                ,new Profile(new Address("A", "A", 1, 1))
+        );
+
+        Profiles profiles = new Profiles();
+
+        List<Address> test = profiles.collect(profileList);
+
+        List<Address> expected = List.of(new  Address("A", "A", 1, 1)
+                , new Address("B", "B", 2, 2)
+        );
+
+        assertThat(test, is(expected));
+    }
 }
