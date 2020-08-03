@@ -16,10 +16,10 @@ public class PhoneDictionary {
         Predicate<Person> compareAddress = person -> person.getAddress().contains(key);
         Predicate<Person> comparePhone = person -> person.getPhone().contains(key);
 
-        Predicate<Person> combine = compareName.or(compareSurname).or(compareAddress).or(comparePhone);
+        var combine = compareName.or(compareSurname).or(compareAddress).or(comparePhone);
 
         ArrayList<Person> result = new ArrayList<>();
-        for (Person person : persons) {
+        for (var person : persons) {
             if (combine.test(person)) {
                 result.add(person);
             }
