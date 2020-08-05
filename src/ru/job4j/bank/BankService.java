@@ -46,13 +46,4 @@ public class BankService {
             return true;
         }
     }
-
-    public static void main(String[] args) {
-        BankService bank = new BankService();
-        bank.addUser(new User("321", "Petr Arsentev"));
-        Optional<User> opt = bank.findByPassport("3211");
-        if (opt.isPresent()) {
-            System.out.println(opt.get().getUsername());
-        }
-    }
 }
