@@ -14,7 +14,7 @@ public class BankService {
     public void addAccount(String passport, Account account) {
         Optional<User> user = findByPassport(passport);
         if (user.isPresent()) {
-            List<Account> accountsList = users.get(user);
+            List<Account> accountsList = users.get(user.get());
             if (!accountsList.contains(account)) {
                 accountsList.add(account);
             }
@@ -22,32 +22,27 @@ public class BankService {
     }
 
     public Optional<User> findByPassport(String passport) {
-        return Optional.ofNullable(users.keySet().stream()
+        return users.keySet().stream()
                 .filter(user -> user.getPassport().equals(passport))
-                .findFirst()
-                .orElse(null));
+                .findFirst();
     }
 
-    public Account findByRequisite(String passport, String requisite) {
+    public Optional<Account> findByRequisite(String passport, String requisite) {
         Optional<User> user = findByPassport(passport);
-        if (user.isPresent()) {
-            return users.get(user).stream()
-                    .filter(a -> a.getRequisite().equals(requisite))
-                    .findFirst()
-                    .orElse(null);
-        }
-        return null;
+        return user.flatMap(value -> users.get(value).stream()
+                .filter(a -> a.getRequisite().equals(requisite))
+                .findFirst());
     }
 
     public boolean transferMoney(String srcPassport, String srcRequisite,
                                  String destPassport, String destRequisite, double amount) {
-        Account destination = findByRequisite(destPassport, destRequisite);
-        Account source = findByRequisite(srcPassport, srcRequisite);
-        if (destination.equals(null) || source.equals(null) || source.getBalance() < amount) {
+        Optional<Account> destination = findByRequisite(destPassport, destRequisite);
+        Optional<Account> source = findByRequisite(srcPassport, srcRequisite);
+        if (destination.equals(null) || source.equals(null) || source.get().getBalance() < amount) {
             return false;
         } else  {
-            destination.setBalance(destination.getBalance() + amount);
-            source.setBalance(source.getBalance() - amount);
+            destination.get().setBalance(destination.get().getBalance() + amount);
+            source.get().setBalance(source.get().getBalance() - amount);
             return true;
         }
     }
