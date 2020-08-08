@@ -19,7 +19,8 @@ public class Analyze {
                 .mapToInt(Subject::getScore)
                 .average()
                 .stream()
-                .map((x, y) -> ).collect(Collectors.toList());
+                .map((x, y) -> )
+                .collect(Collectors.toList());
     }
 
     public static List<Tuple> averageScoreByPupil(Stream<Pupil> stream) {
