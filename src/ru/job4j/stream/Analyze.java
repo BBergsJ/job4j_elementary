@@ -15,12 +15,7 @@ public class Analyze {
     }
 
     public static List<Tuple> averageScoreBySubject(Stream<Pupil> stream) {
-        return stream.flatMap(x -> x.getSubjects().stream())
-                .mapToInt(Subject::getScore)
-                .average()
-                .stream()
-                .map((x, y) -> )
-                .collect(Collectors.toList());
+        return stream.flatMap(x -> new Tuple(x.getName(), )).collect(Collectors.groupingBy(Subject::getName));
     }
 
     public static List<Tuple> averageScoreByPupil(Stream<Pupil> stream) {
