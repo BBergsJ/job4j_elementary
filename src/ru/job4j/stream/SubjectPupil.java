@@ -29,4 +29,9 @@ public class SubjectPupil {
         this.score = score;
     }
 
+    public SubjectPupil(String nameOfStudent, String nameOfSubject, double score) {
+        this.nameOfStudent = nameOfStudent;
+        this.nameOfSubject = nameOfSubject;
+        this.score = score;
+    }
 }
