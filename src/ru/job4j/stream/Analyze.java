@@ -23,10 +23,11 @@ public class Analyze {
     }
 
     public static List<Tuple> averageScoreByPupil(Stream<Pupil> stream) {
-        return stream.flatMap(x -> new Tuple(
-                x.getSubjects().,
-                x.getSubjects().stream().mapToDouble(Subject::getScore)
-        )).collect(Collectors.toList());
+//        return stream.flatMap(x -> new Tuple(
+//                x.getSubjects().,
+//                x.getSubjects().stream().mapToDouble(Subject::getScore)
+//        )).collect(Collectors.toList());
+        return stream.collect(Collectors.toMap(Subject::getName, ));
     }
 
     public static Tuple bestStudent(Stream<Pupil> stream) {
