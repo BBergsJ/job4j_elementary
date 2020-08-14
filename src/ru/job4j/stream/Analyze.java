@@ -54,6 +54,13 @@ public class Analyze {
     }
 
     public static Tuple bestSubject(Stream<Pupil> stream) {
-        return null;
+        return stream
+                .map(x -> new Tuple(x.getName(), x.getSubjects()
+                        .stream()
+                        .mapToDouble(Subject::getScore)
+                        .reduce(Double::sum)
+                        .getAsDouble()))
+                .max(Comparator.comparing(Tuple::getScore))
+                .get();
     }
 }
