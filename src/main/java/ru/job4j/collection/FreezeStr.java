@@ -2,29 +2,24 @@ package ru.job4j.collection;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Stream;
 
 public class FreezeStr {
     public static boolean eq(String left, String right) {
-        Map<Character, Integer> map = new HashMap<>();
+        Map<Character, Integer> leftMap = new HashMap<>();
+        Map<Character, Integer> rightMap = new HashMap<>();
 
-        for (Character c : left.toCharArray()) {
+        return check(leftMap, left).equals(check(rightMap, right));
+    }
+
+    public static Map<Character, Integer> check(Map map, String s) {
+        for (Character c : s.toCharArray()) {
             if (!map.containsKey(c)) {
                 map.put(c, 1);
             } else {
-                map.put(c, map.get(c) + 1);
+                map.put(c, (int) map.get(c) + 1);
             }
         }
-
-        for (Character c : right.toCharArray()) {
-            if (!map.containsKey(c)) {
-                return false;
-            } else {
-                map.put(c, map.get(c) - 1);
-                if (map.get(c) < 0) {
-                    return false;
-                }
-            }
-        }
-        return true;
+        return map;
     }
 }
