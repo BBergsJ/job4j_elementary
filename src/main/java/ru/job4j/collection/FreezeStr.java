@@ -2,7 +2,6 @@ package ru.job4j.collection;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Stream;
 
 public class FreezeStr {
     public static boolean eq(String left, String right) {
