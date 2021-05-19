@@ -14,7 +14,7 @@ public class MathCalculator {
     }
 
     public static double sumAllOperations(double first, double second) {
-        return sum(sumAndMultiply(first, second), sumDiffAndDiv(first, second));
+        return sumAndMultiply(first, second) + sumDiffAndDiv(first, second);
     }
 
     public static void main(String[] args) {
