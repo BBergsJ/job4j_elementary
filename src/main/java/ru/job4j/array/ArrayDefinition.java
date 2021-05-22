@@ -18,5 +18,10 @@ public class ArrayDefinition {
         System.out.println(names[2]);
         System.out.println(names[3]);
         System.out.println(names[4]);
+
+        System.out.println(ages.length);
+        System.out.println(surnames.length);
+        System.out.println(prices.length);
+        System.out.println(names.length);
     }
 }
