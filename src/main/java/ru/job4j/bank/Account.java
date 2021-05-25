@@ -2,8 +2,21 @@ package ru.job4j.bank;
 
 import java.util.Objects;
 
+/**
+ * Класс модели данных - аккаунт пользователя
+ * @author Емельянов Дмитрий
+ * @version 1.0
+ * @since 25.05.21
+ */
+
 public class Account {
+    /**
+     * Реквизит аккаунта
+     */
     private String requisite;
+    /**
+     * Баланс аккаунта
+     */
     private double balance;
 
     public Account(String requisite, double balance) {
