@@ -79,10 +79,9 @@ public class BankService {
         Optional<Account> source = findByRequisite(srcPassport, srcRequisite);
         if (destination.equals(null) || source.equals(null) || source.get().getBalance() < amount) {
             return false;
-        } else  {
-            destination.get().setBalance(destination.get().getBalance() + amount);
-            source.get().setBalance(source.get().getBalance() - amount);
-            return true;
         }
+        destination.get().setBalance(destination.get().getBalance() + amount);
+        source.get().setBalance(source.get().getBalance() - amount);
+        return true;
     }
 }
